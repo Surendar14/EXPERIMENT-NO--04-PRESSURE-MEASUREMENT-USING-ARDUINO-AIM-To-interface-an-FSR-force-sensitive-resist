@@ -1,6 +1,5 @@
 # EXPERIMENT-NO--04-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resistor
 
-
 ## AIM: 
 To interface an FSR(force sensitive resistor) and scale the output voltage obtained to pressure applied 
  
@@ -11,22 +10,14 @@ To interface an FSR(force sensitive resistor) and scale the output voltage obtai
 4.	USB Interfacing cable 
 5.	Connecting wires 
 
-
 ### THEORY: 
 FSRs are basically a resistor that changes its resistive value (in ohms Ω) depending on how much it is pressed. These sensors are fairly low cost, and easy to use. They also vary some from sensor to sensor perhaps 10%. FSR's resistance changes as more pressure is applied. When there is no pressure, the sensor looks like an infinite resistor (open circuit), as the pressure increases, the resistance goes down. This graph indicates approximately the resistance of the sensor at different force measurements.
  
-
 ![image](https://user-images.githubusercontent.com/36288975/163532939-d6888ae1-4068-4d83-86a7-fc4c32d5179e.png)
 
 ### FIGURE 01 GRAPH OF FORCE vs RESISTANCE **
 
-
-
-
 ![image](https://user-images.githubusercontent.com/36288975/163532957-82d57567-a1c3-48c5-8a87-7ea66d6fca49.png)
-
-
-
 
 ### FIGURE 02 FORCE SENSITIVE RESITOR FOIL DISC TYPE  
 
@@ -46,21 +37,11 @@ The easiest way to measure a resistive sensor is to connect one end to power and
 ****That is, the voltage is proportional to the inverse of the FSR resistance.
 
 
-
-
-
-
-
-
-
-
 ![image](https://user-images.githubusercontent.com/36288975/163532979-a2a5cb5c-f495-442c-843e-bebb82737a35.png)
-
-
 
 ### FIGURE-03 CIRCUIT DIAGRAM
 
-
+![image](https://user-images.githubusercontent.com/74660507/166241830-6732e218-3192-4264-9679-f640c08ecc65.png)
 
 ### PROCEDURE:
 1.	Connect the circuit as per the circuit diagram 
@@ -74,57 +55,40 @@ The easiest way to measure a resistive sensor is to connect one end to power and
 9.	Ensure safety before powering up the device 
 10.	Plot the graph for the output voltage vs the resistance 
 
-
 ### PROGRAM 
- *your roll no 
- * your name 
- * department and year 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+ ```c
+// C++ code
+//
+int force = 0;
 
-![image](https://user-images.githubusercontent.com/36288975/188804653-a3154e8e-2655-46f2-9dcd-f425dd1ba109.png)
+float f = 0;
+void setup()
+{
+  pinMode(A3, INPUT);
+  pinMode(8, OUTPUT);
+  Serial.begin(9600);
 
+}
 
-### TABLE -02 standard deviation table 
-### Population Standard Deviation
-The population standard deviation, the standard definition of σ, is used when an entire population can be measured, and is the square root of the variance of a given data set. In cases where every member of a population can be sampled, the following equation can be used to find the standard deviation of the entire population:
-
-
-
-Where
-xi is an individual value
-μ is the mean/expected value
-N is the total number of values
-
-For those unfamiliar with summation notation, the equation above may seem daunting, but when addressed through its individual components, this summation is not particularly complicated. The i=1 in the summation indicates the starting index, i.e. for the data set 1, 3, 4, 7, 8, i=1 would be 1, i=2 would be 3, and so on. Hence the summation notation simply means to perform the operation of (xi - μ)2 on each value through N, which in this case is 5 since there are 5 values in this data set.
-
-EX:           μ = (1+3+4+7+8) / 5 = 4.6        
-σ = √[(1 - 4.6)2 + (3 - 4.6)2 + ... + (8 - 4.6)2)]/5
-σ = √(12.96 + 2.56 + 0.36 + 5.76 + 11.56)/5 = 2.577
+void loop()
+{
+  force= analogRead(A3);
+  f = map(force,0,500,0,10);
+  //Serial.print("Force =");
+  Serial.println(f);
+  analogWrite(8, force);
+  delay(1000); // Wait for 1000 millisecond(s)
+  
+}
+```
+ ### Output:
+ ![exp4](https://user-images.githubusercontent.com/75234588/166480908-21d07ba6-d5b1-44e8-8133-bc21ed95dcb7.png)
 
 
 
+### TABLE -02 OUTPUT VOLTAGES AND CHANGE IN RESISTANCES
 
-
-
-
-
-
-
-
+![Screenshot (60)](https://user-images.githubusercontent.com/75234588/166481089-d63f0dff-c9d7-457c-a91a-b8a361aedcaf.png)
 
 
 
